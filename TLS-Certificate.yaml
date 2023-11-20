@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-cerificate
+  namespace: cicd-demo
+spec:
+  secretName: cicd-demo-tls
+  issuerRef:
+    name: acme-issuer
+    kind: ClusterIssuer
+  dnsNames:
+  - 'cicd-demo.abcdavid.top'

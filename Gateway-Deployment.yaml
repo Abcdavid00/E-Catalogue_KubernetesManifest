@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+spec:
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+      - name: api-gateway
+        image: harbor.abcdavid.top/cicd_demo/gateway@sha256:78642512bb4e7b1587d2691c5e991f2423789910ec037293be9255e8c65bf4f4
+        env:
+        - name: PORT
+          value: '3000'
+        - name: USERSMS_HOST
+          value: users-ms
+        - name: USERSMS_PORT
+          value: '3000'
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000

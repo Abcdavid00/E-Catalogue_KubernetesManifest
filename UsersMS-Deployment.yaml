@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-ms
+spec:
+  selector:
+    matchLabels:
+      app: users-ms
+  template:
+    metadata:
+      labels:
+        app: users-ms
+    spec:
+      containers:
+      - name: users-ms
+        image: harbor.abcdavid.top/cicd_demo/usersms@sha256:3554f98ad8fe8ad5381fd6a52c63949594ef03c6ef9d18079e2085988b13ed47
+        env:
+        - name: PORT
+          value: '3000'
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
