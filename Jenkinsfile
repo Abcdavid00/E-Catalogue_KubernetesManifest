@@ -16,6 +16,11 @@ pipeline {
         }
     }
     stages {
+
+      stage('Clone repository') {
+        checkout scm
+      }
+
       stage('Update Gateway-Deployment.yaml') {
         steps {
           container('shell') {
