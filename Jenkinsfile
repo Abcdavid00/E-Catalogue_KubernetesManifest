@@ -18,7 +18,14 @@ pipeline {
     stages {
 
       stage('Clone repository') {
-        checkout scm
+        steps {
+          container('shell') {
+            withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                sh 'git config user.name ${GIT_USERNAME}'
+                sh 'git clone https://github.com/Abcdavid00/E-Catalogue_KubernetesManifest.git'
+            }
+          }
+        }
       }
 
       stage('Update Gateway-Deployment.yaml') {
