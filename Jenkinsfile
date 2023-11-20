@@ -7,7 +7,7 @@ pipeline {
                   spec:
                     containers:
                     - name: shell
-                      image: ubuntu
+                      image: alpine/git
                       command:
                       - sleep
                       args:
