@@ -7,7 +7,7 @@ node {
   }
 
   stage('Update Gateway-Deployment.yaml') {
-    steps {
+    script {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
         sh 'git config user.name ${GIT_USERNAME}'
         sh 'cat Gateway-Deployment.yaml'
@@ -17,7 +17,7 @@ node {
     }
   }
   stage("Update UsersMS-Deployment.yaml") {
-    steps {
+    script {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
         sh 'git config user.name ${GIT_USERNAME}'
         sh 'cat UsersMS-Deployment.yaml'
@@ -27,7 +27,7 @@ node {
     }
   }
   stage("Commit & Push") {
-    steps {
+    script {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
         sh 'git add .'
         sh 'git commit -m "Update Image Version to ${IMAGE_VERSION}\nDone by Jenkins"'
