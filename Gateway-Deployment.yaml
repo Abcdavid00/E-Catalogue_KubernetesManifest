@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: harbor.abcdavid.top/cicd_demo/gateway@sha256:78642512bb4e7b1587d2691c5e991f2423789910ec037293be9255e8c65bf4f4
+        image: harbor.abcdavid.top/cicd_demo/gateway:0.0.11
         env:
         - name: PORT
           value: '3000'
