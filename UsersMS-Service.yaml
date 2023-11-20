@@ -4,6 +4,7 @@ metadata:
   name: users-ms
   namespace: cicd-demo
 spec:
+  type: LoadBalancer
   selector:
     app: users-ms
   ports:
