@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: users-ms
-        image: harbor.abcdavid.top/cicd_demo/usersms:0.0.17
+        image: harbor.abcdavid.top/cicd_demo/usersms:0.0.18
         env:
         - name: PORT
           value: '3000'
