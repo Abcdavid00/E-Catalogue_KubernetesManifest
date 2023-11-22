@@ -7,12 +7,12 @@ spec:
   selector:
     matchLabels:
       app: users-ms
+  revisionHistoryLimit: 1
   template:
     metadata:
       labels:
         app: users-ms
     spec:
-      revisionHistoryLimit: 1
       containers:
       - name: users-ms
         image: harbor.abcdavid.top/cicd_demo/usersms:0.0.28
