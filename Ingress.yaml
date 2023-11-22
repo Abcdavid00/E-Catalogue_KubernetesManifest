@@ -8,11 +8,11 @@ items:
     labels:
       app: api-gateway
     name: api-gateway-ingress
-    namespace: cicd-demo
+    namespace: e-catalogue
   spec:
     ingressClassName: traefik
     rules:
-    - host: cicd-demo.abcdavid.top
+    - host: e-catalogue.abcdavid.top
       http:
         paths:
         - backend:
@@ -24,8 +24,8 @@ items:
           pathType: Prefix
     tls:
     - hosts:
-      - cicd-demo.abcdavid.top
-      secretName: cicd-demo-tls
+      - e-catalogue.abcdavid.top
+      secretName: e-catalogue-tls
   status:
     loadBalancer: {}
 kind: List

@@ -11,7 +11,7 @@ node {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
         sh 'git config user.name ${GIT_USERNAME}'
         sh 'cat Gateway-Deployment.yaml'
-        sh 'sed -i "s+harbor.abcdavid.top/cicd_demo/gateway.*+harbor.abcdavid.top/cicd_demo/gateway:${IMAGE_VERSION}+g" Gateway-Deployment.yaml'
+        sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/gateway.*+harbor.abcdavid.top/e_catalogue/gateway:${IMAGE_VERSION}+g" Gateway-Deployment.yaml'
         sh 'cat Gateway-Deployment.yaml'
       }
     }
@@ -21,7 +21,7 @@ node {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
         sh 'git config user.name ${GIT_USERNAME}'
         sh 'cat UsersMS-Deployment.yaml'
-        sh 'sed -i "s+harbor.abcdavid.top/cicd_demo/usersms.*+harbor.abcdavid.top/cicd_demo/usersms:${IMAGE_VERSION}+g" UsersMS-Deployment.yaml'
+        sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/usersms.*+harbor.abcdavid.top/e_catalogue/usersms:${IMAGE_VERSION}+g" UsersMS-Deployment.yaml'
         sh 'cat UsersMS-Deployment.yaml'
       }
     }
