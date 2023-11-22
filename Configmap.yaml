@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: connection-config
+  namespace: e-catalogue
+  labels:
+    app: e-catalogue
+data:
+  api-gateway.port: '3000'
+
+  users-ms.host: 'users-ms'
+  users-ms.port: '3000'
+  users-ms.healthcheck_port: '3001'
+

@@ -18,7 +18,15 @@ spec:
         image: harbor.abcdavid.top/e_catalogue/usersms:0.0.29
         env:
         - name: PORT
-          value: '3000'
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: users-ms.port
+        - name: HEALTHCHECK_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: users-ms.healthcheck_port
         resources:
           limits:
             memory: "512Mi"

@@ -18,11 +18,20 @@ spec:
         image: harbor.abcdavid.top/e_catalogue/gateway:0.0.29
         env:
         - name: PORT
-          value: '3000'
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: api-gateway.port
         - name: USERSMS_HOST
-          value: users-ms
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: users-ms.host
         - name: USERSMS_PORT
-          value: '3000'
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: users-ms.healthcheck_port
         resources:
           limits:
             memory: "512Mi"
