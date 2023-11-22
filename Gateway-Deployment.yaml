@@ -15,7 +15,7 @@ spec:
       revisionHistoryLimit: 1
       containers:
       - name: api-gateway
-        image: harbor.abcdavid.top/cicd_demo/gateway:0.0.18
+        image: harbor.abcdavid.top/cicd_demo/gateway:0.0.28
         env:
         - name: PORT
           value: '3000'
