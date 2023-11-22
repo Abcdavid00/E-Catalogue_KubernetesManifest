@@ -12,6 +12,7 @@ spec:
       labels:
         app: api-gateway
     spec:
+      revisionHistoryLimit: 1
       containers:
       - name: api-gateway
         image: harbor.abcdavid.top/cicd_demo/gateway:0.0.18
