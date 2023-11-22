@@ -4,7 +4,7 @@ items:
   kind: Ingress
   metadata:
     annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
+      cert-manager.io/cluster-issuer: acme-issuer
     labels:
       app: api-gateway
     name: api-gateway-ingress
