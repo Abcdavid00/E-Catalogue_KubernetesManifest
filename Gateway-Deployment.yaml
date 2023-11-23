@@ -31,7 +31,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: connection-config
-              key: users-ms.healthcheck_port
+              key: users-ms.port
         resources:
           limits:
             memory: "512Mi"
