@@ -19,6 +19,7 @@ spec:
   selector:
     matchLabels:
       app: usersdb
+  revisionHistoryLimit: 1
   strategy:
     type: Recreate
   template:
