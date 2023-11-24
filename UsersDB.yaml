@@ -61,20 +61,20 @@ spec:
           limits:
             memory: "1024Mi"
             cpu: "1000m"
-      volumes:
-      - name: usersdb-persistent-storage
-        persistentVolumeClaim:
-          claimName: usersdb-pv-claim
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: usersdb-pv-claim
-  namespace: e-catalogue
-spec:
-  storageClassName: longhorn
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
+      # volumes:
+      # - name: usersdb-persistent-storage
+      #   persistentVolumeClaim:
+      #     claimName: usersdb-pv-claim
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: usersdb-pv-claim
+#   namespace: e-catalogue
+# spec:
+#   storageClassName: longhorn
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 10Gi
