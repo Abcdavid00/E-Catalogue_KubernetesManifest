@@ -54,13 +54,13 @@ spec:
         ports:
         - containerPort: 3306
           name: usersdb
-        volumeMounts:
-        - name: usersdb-persistent-storage
-          mountPath: /var/lib/mysql
         resources:
           limits:
             memory: "1024Mi"
             cpu: "1000m"
+        # volumeMounts:
+        # - name: usersdb-persistent-storage
+        #   mountPath: /var/lib/mysql
       # volumes:
       # - name: usersdb-persistent-storage
       #   persistentVolumeClaim:
