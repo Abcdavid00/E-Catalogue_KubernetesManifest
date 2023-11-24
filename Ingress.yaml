@@ -1,31 +1,27 @@
-apiVersion: v1
-items:
-- apiVersion: networking.k8s.io/v1
-  kind: Ingress
-  metadata:
-    annotations:
-      cert-manager.io/cluster-issuer: acme-issuer
-    labels:
-      app: api-gateway
-    name: api-gateway-ingress
-    namespace: e-catalogue
-  spec:
-    ingressClassName: traefik
-    rules:
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: acme-issuer
+  labels:
+    app: api-gateway
+    app.kubernetes.io/instance: e-catalogue
+  name: api-gateway-ingress
+  namespace: e-catalogue
+spec:
+  ingressClassName: traefik
+  rules:
     - host: e-catalogue.abcdavid.top
       http:
         paths:
-        - backend:
-            service:
-              name: api-gateway
-              port:
-                number: 3000
-          path: /
-          pathType: Prefix
-    tls:
+          - backend:
+              service:
+                name: api-gateway
+                port:
+                  number: 3000
+            path: /
+            pathType: Prefix
+  tls:
     - hosts:
-      - e-catalogue.abcdavid.top
+        - e-catalogue.abcdavid.top
       secretName: e-catalogue-tls
-  status:
-    loadBalancer: {}
-kind: List
