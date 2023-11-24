@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: databases-config
+  namespace: e-catalogue
+  labels:
+    app: e-catalogue
+data:
+  USERSDB_HOST: 'usersdb'
+  USERSDB_PORT: '3306'
+  USERSDB_DATABASE: "USERS"
+
+

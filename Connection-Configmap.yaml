@@ -6,9 +6,9 @@ metadata:
   labels:
     app: e-catalogue
 data:
-  api-gateway.port: '3000'
+  GATEWAY_PORT: '3000'
 
-  users-ms.host: 'users-ms'
-  users-ms.port: '3000'
-  users-ms.healthcheck_port: '3001'
+  USERSMS_HOST: 'users-ms'
+  USERSMS_PORT: '3000'
+  USERSMS_HEALTHCHECK_POR: '3001'
 

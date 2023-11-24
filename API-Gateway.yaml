@@ -21,17 +21,17 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: connection-config
-              key: api-gateway.port
+              key: GATEWAY_PORT
         - name: USERSMS_HOST
           valueFrom:
             configMapKeyRef:
               name: connection-config
-              key: users-ms.host
+              key: USERSMS_HOST
         - name: USERSMS_PORT
           valueFrom:
             configMapKeyRef:
               name: connection-config
-              key: users-ms.port
+              key: USERSMS_PORT
         resources:
           limits:
             memory: "512Mi"

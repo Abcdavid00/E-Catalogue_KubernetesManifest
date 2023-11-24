@@ -21,12 +21,12 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: connection-config
-              key: users-ms.port
+              key: USERSMS_PORT
         - name: HEALTHCHECK_PORT
           valueFrom:
             configMapKeyRef:
               name: connection-config
-              key: users-ms.healthcheck_port
+              key: USERSMS_HEALTHCHECK_POR
         resources:
           limits:
             memory: "512Mi"
