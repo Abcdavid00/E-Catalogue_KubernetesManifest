@@ -37,10 +37,7 @@ spec:
               name: databases-config
               key: USERSDB_DATABASE
         - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            configMapKeyRef:
-              name: databases-config
-              key: USERSDB_DATABASE
+          value: 'asd'
             # secretKeyRef:
             #   name: databases-secrets
             #   key: USERSDB_ROOT_PASSWORD
