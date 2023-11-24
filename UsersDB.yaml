@@ -41,16 +41,16 @@ spec:
             secretKeyRef:
               name: databases-secrets
               key: USERSDB_ROOT_PASSWORD
-        # - name: MYSQL_USER
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: databases-secrets
-        #       key: USERSDB_USER
-        # - name: MYSQL_PASSWORD
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: databases-secrets
-        #       key: USERSDB_PASSWORD
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: USERSDB_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: USERSDB_PASSWORD
         ports:
         - containerPort: 3306
           name: usersdb
