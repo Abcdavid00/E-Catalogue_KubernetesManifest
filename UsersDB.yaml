@@ -38,9 +38,12 @@ spec:
               key: USERSDB_DATABASE
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
-            secretKeyRef:
-              name: databases-secrets
-              key: USERSDB_ROOT_PASSWORD
+            configMapKeyRef:
+              name: databases-config
+              key: USERSDB_DATABASE
+            # secretKeyRef:
+            #   name: databases-secrets
+            #   key: USERSDB_ROOT_PASSWORD
         # - name: MYSQL_USER
         #   valueFrom:
         #     secretKeyRef:
