@@ -6,7 +6,7 @@ metadata:
   labels:
     app: e-catalogue
 data:
-  USERSDB_HOST: 'usersdb'
+  USERSDB_HOST: 'users-db'
   USERSDB_PORT: '3306'
   USERSDB_DATABASE: "USERS"
 
