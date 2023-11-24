@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: usersdb
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: usersdb
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usersdb
+spec:
+  selector:
+    matchLabels:
+      app: usersdb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: usersdb
+    spec:
+      containers:
+      - image: mysql:5.6
+        name: usersdb
+        env:
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: Databases-config
+              key: USERSDB_DATABASE
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: Databases-Secrets
+              key: USERSDB_ROOT_PASSWORD
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: Databases-Secrets
+              key: USERSDB_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: Databases-Secrets
+              key: USERSDB_PASSWORD
+        ports:
+        - containerPort: 3306
+          name: usersdb
+        volumeMounts:
+        - name: usersdb-persistent-storage
+          mountPath: /var/lib/mysql
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+      volumes:
+      - name: usersdb-persistent-storage
+        persistentVolumeClaim:
+          claimName: usersdb-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: usersdb-pv-claim
+spec:
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
