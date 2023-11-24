@@ -6,23 +6,23 @@ node {
     checkout scm
   }
 
-  stage('Update Gateway-Deployment.yaml') {
+  stage('Update API-Gateway.yaml') {
     script {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
         sh 'git config user.name ${GIT_USERNAME}'
-        sh 'cat Gateway-Deployment.yaml'
-        sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/gateway.*+harbor.abcdavid.top/e_catalogue/gateway:${IMAGE_VERSION}+g" Gateway-Deployment.yaml'
-        sh 'cat Gateway-Deployment.yaml'
+        sh 'cat API-Gateway.yaml'
+        sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/gateway.*+harbor.abcdavid.top/e_catalogue/gateway:${IMAGE_VERSION}+g" API-Gateway.yaml'
+        sh 'cat API-Gateway.yaml'
       }
     }
   }
-  stage("Update UsersMS-Deployment.yaml") {
+  stage("Update UsersMS.yaml") {
     script {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
         sh 'git config user.name ${GIT_USERNAME}'
-        sh 'cat UsersMS-Deployment.yaml'
-        sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/usersms.*+harbor.abcdavid.top/e_catalogue/usersms:${IMAGE_VERSION}+g" UsersMS-Deployment.yaml'
-        sh 'cat UsersMS-Deployment.yaml'
+        sh 'cat Micro-services/UsersMS.yaml'
+        sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/usersms.*+harbor.abcdavid.top/e_catalogue/usersms:${IMAGE_VERSION}+g" Micro-services/UsersMS.yaml'
+        sh 'cat Micro-services/UsersMS.yaml'
       }
     }
   }
