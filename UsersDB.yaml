@@ -33,22 +33,22 @@ spec:
         - name: MYSQL_DATABASE
           valueFrom:
             configMapKeyRef:
-              name: Databases-config
+              name: databases-config
               key: USERSDB_DATABASE
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: Databases-Secrets
+              name: databases-secrets
               key: USERSDB_ROOT_PASSWORD
         - name: MYSQL_USER
           valueFrom:
             secretKeyRef:
-              name: Databases-Secrets
+              name: databases-secrets
               key: USERSDB_USER
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: Databases-Secrets
+              name: databases-secrets
               key: USERSDB_PASSWORD
         ports:
         - containerPort: 3306
