@@ -58,23 +58,23 @@ spec:
           limits:
             memory: "1024Mi"
             cpu: "1000m"
-        # volumeMounts:
-        # - name: users-db-persistent-storage
-        #   mountPath: /var/lib/mysql
-      # volumes:
-      # - name: users-db-persistent-storage
-      #   persistentVolumeClaim:
-      #     claimName: users-db-pv-claim
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: users-db-pv-claim
-#   namespace: e-catalogue
-# spec:
-#   storageClassName: longhorn
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 10Gi
+        volumeMounts:
+        - name: users-db-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: users-db-persistent-storage
+        persistentVolumeClaim:
+          claimName: users-db-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: users-db-pv-claim
+  namespace: e-catalogue
+spec:
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
