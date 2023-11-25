@@ -26,7 +26,32 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: connection-config
-              key: USERSMS_HEALTHCHECK_POR
+              key: USERSMS_HEALTHCHECK_PORT
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: USERSDB_HOST
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: USERSDB_PORT
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: USERSDB_DATABASE
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: USERSDB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: USERSDB_PASSWORD
         resources:
           limits:
             memory: "512Mi"
