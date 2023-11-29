@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: users-ms
-        image: harbor.abcdavid.top/e_catalogue/usersms:0.0.39
+        image: harbor.abcdavid.top/e_catalogue/usersms:0.0.41
         env:
         - name: PORT
           valueFrom:
