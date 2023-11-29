@@ -22,6 +22,16 @@ spec:
             configMapKeyRef:
               name: connection-config
               key: GATEWAY_PORT
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: jwt-secrets
+              key: JWT_SECRET
+        - name: JWT_EXPIRES_IN
+          valueFrom:
+            secretKeyRef:
+              name: jwt-secrets
+              key: JWT_EXPIRES_IN
         - name: USERSMS_HOST
           valueFrom:
             configMapKeyRef:
