@@ -25,7 +25,7 @@ spec:
         - name: JWT_SECRET
           valueFrom:
             secretKeyRef:
-              name: jwt-secret
+              name: jwt-secrets
               key: JWT_SECRET
         - name: JWT_REFRESH_EXPIRES_IN
           valueFrom:
