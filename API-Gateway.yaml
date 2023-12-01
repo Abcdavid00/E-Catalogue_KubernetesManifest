@@ -25,12 +25,17 @@ spec:
         - name: JWT_SECRET
           valueFrom:
             secretKeyRef:
-              name: jwt-secrets
+              name: jwt-secret
               key: JWT_SECRET
+        - name: JWT_REFRESH_EXPIRES_IN
+          valueFrom:
+            configMapKeyRef:
+              name: jwt-config
+              key: JWT_REFRESH_EXPIRES_IN
         - name: JWT_EXPIRES_IN
           valueFrom:
-            secretKeyRef:
-              name: jwt-secrets
+            configMapKeyRef:
+              name: jwt-config
               key: JWT_EXPIRES_IN
         - name: USERSMS_HOST
           valueFrom:
