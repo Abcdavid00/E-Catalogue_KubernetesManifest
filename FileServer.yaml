@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fileserver
+  namespace: e-catalogue
+spec:
+  ports:
+  - port: 3300
+  selector:
+    app: fileserver
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fileserver
+  namespace: e-catalogue
+spec:
+  selector:
+    matchLabels:
+      app: fileserver
+  revisionHistoryLimit: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fileserver
+    spec:
+      containers:
+      - image: harbor.abcdavid.top/e_catalogue/fileserver:0.0.45
+        name: fileserver
+        env:
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: fileserver-config
+              key: FILESERVER_PORT
+        - name: MAX_FILE_SIZE
+          valueFrom:
+            configMapKeyRef:
+              name: fileserver-config
+              key: FILESERVER_MAX_FILE_SIZE
+        ports:
+        - containerPort: 3300
+          name: fileserver
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        volumeMounts:
+        - name: fileserver-persistent-storage
+          mountPath: /app/files
+      volumes:
+      - name: fileserver-persistent-storage
+        persistentVolumeClaim:
+          claimName: fileserver-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: fileserver-pv-claim
+  namespace: e-catalogue
+spec:
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi

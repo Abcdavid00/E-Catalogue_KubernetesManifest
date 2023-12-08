@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fileserver-config
+  namespace: e-catalogue
+  labels:
+    app: e-catalogue
+data:
+  FILESERVER_HOST: fileserver
+  FILESERVER_PORT: '3300'
+  FILESERVER_MAX_FILE_SIZE: '50'

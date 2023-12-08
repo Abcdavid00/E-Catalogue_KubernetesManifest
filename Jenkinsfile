@@ -9,7 +9,6 @@ node {
   stage('Update API-Gateway.yaml') {
     script {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-        // sh 'git config --global user.name ${GIT_USERNAME}'
         sh 'cat API-Gateway.yaml'
         sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/gateway.*+harbor.abcdavid.top/e_catalogue/gateway:${IMAGE_VERSION}+g" API-Gateway.yaml'
         sh 'cat API-Gateway.yaml'
@@ -19,10 +18,18 @@ node {
   stage("Update UsersMS.yaml") {
     script {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-        // sh 'git config --global user.name ${GIT_USERNAME}'
         sh 'cat UsersMS.yaml'
         sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/usersms.*+harbor.abcdavid.top/e_catalogue/usersms:${IMAGE_VERSION}+g" UsersMS.yaml'
         sh 'cat UsersMS.yaml'
+      }
+    }
+  }
+  stage("Update FileServer.yaml") {
+    script {
+      withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+        sh 'cat FileServer.yaml'
+        sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/fileserver.*+harbor.abcdavid.top/e_catalogue/fileserver:${IMAGE_VERSION}+g" FileServer.yaml'
+        sh 'cat FileServer.yaml'
       }
     }
   }
