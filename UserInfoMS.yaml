@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userinfo-ms
+  namespace: e-catalogue
+spec:
+  selector:
+    matchLabels:
+      app: userinfo-ms
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: userinfo-ms
+    spec:
+      containers:
+      - name: userinfo-ms
+        image: harbor.abcdavid.top/e_catalogue/userinfoms:0.0.64
+        env:
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: USERINFOMS_PORT
+        - name: HEALTHCHECK_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: USERINFOMS_HEALTHCHECK_PORT
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: USERINFODB_HOST
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: USERINFODB_PORT
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: USERINFODB_DATABASE
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: USERINFODB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: USERINFODB_PASSWORD
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: userinfo-ms
+  namespace: e-catalogue
+spec:
+  selector:
+    app: userinfo-ms
+  ports:
+  - port: 3000
+    targetPort: 3000
