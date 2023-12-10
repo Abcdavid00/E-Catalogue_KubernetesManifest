@@ -37,6 +37,7 @@ spec:
             configMapKeyRef:
               name: jwt-config
               key: JWT_EXPIRES_IN
+        
         - name: USERSMS_HOST
           valueFrom:
             configMapKeyRef:
@@ -47,6 +48,28 @@ spec:
             configMapKeyRef:
               name: connection-config
               key: USERSMS_PORT
+
+        - name: USERINFOMS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: USERINFOMS_HOST
+        - name: USERINFOMS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: USERINFOMS_PORT
+        
+        - name: FILESERVER_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: FILESERVER_HOST
+        - name: FILESERVER_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: FILESERVER_PORT
         resources:
           limits:
             memory: "512Mi"
