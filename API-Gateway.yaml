@@ -63,12 +63,12 @@ spec:
         - name: FILESERVER_HOST
           valueFrom:
             configMapKeyRef:
-              name: connection-config
+              name: fileserver-config
               key: FILESERVER_HOST
         - name: FILESERVER_PORT
           valueFrom:
             configMapKeyRef:
-              name: connection-config
+              name: fileserver-config
               key: FILESERVER_PORT
         resources:
           limits:
