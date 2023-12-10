@@ -50,7 +50,7 @@ spec:
             cpu: "500m"
         volumeMounts:
         - name: fileserver-persistent-storage
-          mountPath: /app/files
+          mountPath: /app
       volumes:
       - name: fileserver-persistent-storage
         persistentVolumeClaim:
