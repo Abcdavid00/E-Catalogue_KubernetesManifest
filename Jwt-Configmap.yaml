@@ -6,7 +6,7 @@ metadata:
   labels:
     app: e-catalogue
 data:
-  JWT_EXPIRES_IN: 60s
+  JWT_EXPIRES_IN: 1h
   JWT_REFRESH_EXPIRES_IN: 7d
 
 
