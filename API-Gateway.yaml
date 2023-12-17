@@ -59,6 +59,17 @@ spec:
             configMapKeyRef:
               name: connection-config
               key: USERINFOMS_PORT
+
+        - name: PRODUCTMS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: PRODUCTMS_HOST
+        - name: PRODUCTMS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: PRODUCTMS_PORT
         
         - name: FILESERVER_HOST
           valueFrom:
