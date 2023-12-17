@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-db
+  namespace: e-catalogue
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: product-db
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-db
+  namespace: e-catalogue
+spec:
+  selector:
+    matchLabels:
+      app: product-db
+  revisionHistoryLimit: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: product-db
+    spec:
+      containers:
+      - image: mysql:latest
+        name: product-db
+        env:
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: PRODUCTDB_DATABASE
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: PRODUCTDB_ROOT_PASSWORD
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: PRODUCTDB_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: PRODUCTDB_PASSWORD
+        ports:
+        - containerPort: 3306
+          name: product-db
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        volumeMounts:
+        - name: product-db-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: product-db-persistent-storage
+        persistentVolumeClaim:
+          claimName: product-db-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: product-db-pv-claim
+  namespace: e-catalogue
+spec:
+  storageClassName: longhorn
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

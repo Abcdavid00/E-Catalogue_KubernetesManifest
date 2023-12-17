@@ -24,6 +24,24 @@ node {
       }
     }
   }
+  stage("Update UserInfoMS.yaml") {
+    script {
+      withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+        sh 'cat UserInfoMS.yaml'
+        sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/userinfoms.*+harbor.abcdavid.top/e_catalogue/userinfoms:${IMAGE_VERSION}+g" UserInfoMS.yaml'
+        sh 'cat UserInfoMS.yaml'
+      }
+    }
+  }
+  stage("Update ProductsMS.yaml") {
+    script {
+      withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+        sh 'cat ProductsMS.yaml'
+        sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/productsms.*+harbor.abcdavid.top/e_catalogue/productsms:${IMAGE_VERSION}+g" ProductsMS.yaml'
+        sh 'cat ProductsMS.yaml'
+      }
+    }
+  }
   stage("Update FileServer.yaml") {
     script {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {

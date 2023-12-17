@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-ms
+  namespace: e-catalogue
+spec:
+  selector:
+    matchLabels:
+      app: product-ms
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: product-ms
+    spec:
+      containers:
+      - name: product-ms
+        image: harbor.abcdavid.top/e_catalogue/productms:0.0.64
+        env:
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: PRODUCTMS_PORT
+        - name: HEALTHCHECK_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: PRODUCTMS_HEALTHCHECK_PORT
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: PRODUCTDB_HOST
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: PRODUCTDB_PORT
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: PRODUCTDB_DATABASE
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: PRODUCTDB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: PRODUCTDB_PASSWORD
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-ms
+  namespace: e-catalogue
+spec:
+  selector:
+    app: product-ms
+  ports:
+  - port: 3000
+    targetPort: 3000
