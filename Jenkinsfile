@@ -33,10 +33,10 @@ node {
       }
     }
   }
-  stage("Update ProductsMS.yaml") {
+  stage("Update ProductMS.yaml") {
     script {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-        sh 'cat ProductsMS.yaml'
+        sh 'cat ProductMS.yaml'
         sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/productsms.*+harbor.abcdavid.top/e_catalogue/productsms:${IMAGE_VERSION}+g" ProductsMS.yaml'
         sh 'cat ProductsMS.yaml'
       }
