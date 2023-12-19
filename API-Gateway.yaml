@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: harbor.abcdavid.top/e_catalogue/gateway:0.0.77
+        image: harbor.abcdavid.top/e_catalogue/gateway:0.0.78
         env:
         - name: PORT
           valueFrom:
