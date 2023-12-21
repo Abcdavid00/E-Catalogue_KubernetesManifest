@@ -57,7 +57,7 @@ spec:
         resources:
           limits:
             memory: "512Mi"
-            cpu: "10m"
+            cpu: "50m"
         volumeMounts:
         - name: users-db-persistent-storage
           mountPath: /var/lib/mysql
