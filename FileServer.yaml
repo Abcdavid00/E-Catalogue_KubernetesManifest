@@ -46,8 +46,8 @@ spec:
           name: fileserver
         resources:
           limits:
-            memory: "512Mi"
-            cpu: "500m"
+            memory: "64Mi"
+            cpu: "10m"
         volumeMounts:
         - name: fileserver-persistent-storage
           mountPath: /app/files

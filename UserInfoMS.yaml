@@ -54,8 +54,8 @@ spec:
               key: USERINFODB_PASSWORD
         resources:
           limits:
-            memory: "512Mi"
-            cpu: "500m"
+            memory: "128Mi"
+            cpu: "10m"
         ports:
         - containerPort: 3000
 
