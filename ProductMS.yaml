@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: product-ms
-        image: harbor.abcdavid.top/e_catalogue/productms:0.0.80
+        image: harbor.abcdavid.top/e_catalogue/productms:0.0.81
         env:
         - name: PORT
           valueFrom:
