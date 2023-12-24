@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contact-ms
+  namespace: e-catalogue
+spec:
+  selector:
+    matchLabels:
+      app: contact-ms
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: contact-ms
+    spec:
+      containers:
+      - name: contact-ms
+        image: harbor.abcdavid.top/e_catalogue/contactms:0.0.85
+        env:
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: CONTACTMS_PORT
+        - name: HEALTHCHECK_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: CONTACTMS_HEALTHCHECK_PORT
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: CONTACTDB_HOST
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: CONTACTDB_PORT
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: databases-config
+              key: CONTACTDB_DATABASE
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: CONTACTDB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: databases-secrets
+              key: CONTACTDB_PASSWORD
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: contact-ms
+  namespace: e-catalogue
+spec:
+  selector:
+    app: contact-ms
+  ports:
+  - port: 3000
+    targetPort: 3000

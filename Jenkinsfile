@@ -34,6 +34,13 @@ node {
       }
     }
   }
+  stage("Update ContactMS.yaml") {
+    script {
+      withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+        sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/contactms.*+harbor.abcdavid.top/e_catalogue/contactms:${IMAGE_VERSION}+g" ContactMS.yaml'
+      }
+    }
+  }
   stage("Update FileServer.yaml") {
     script {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
