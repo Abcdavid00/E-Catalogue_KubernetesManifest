@@ -22,6 +22,11 @@ spec:
             configMapKeyRef:
               name: connection-config
               key: GATEWAY_PORT
+        - name: SERVER
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: GATEWAY_HOST
         - name: JWT_SECRET
           valueFrom:
             secretKeyRef:

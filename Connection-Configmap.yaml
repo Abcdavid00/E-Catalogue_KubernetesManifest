@@ -7,6 +7,7 @@ metadata:
     app: e-catalogue
 data:
   GATEWAY_PORT: '3000'
+  GATEWAY_HOST: 'https://e-catalogue.abcdavid.top'
 
   USERSMS_HOST: users-ms
   USERSMS_PORT: '3000'
