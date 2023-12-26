@@ -86,6 +86,17 @@ spec:
             configMapKeyRef:
               name: connection-config
               key: CONTACTMS_PORT
+
+        - name: ORDERMS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: ORDERMS_HOST
+        - name: ORDERMS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: connection-config
+              key: ORDERMS_PORT
         
         - name: FILESERVER_HOST
           valueFrom:

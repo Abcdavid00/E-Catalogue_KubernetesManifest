@@ -41,6 +41,13 @@ node {
       }
     }
   }
+  stage("Update OrderMS.yaml") {
+    script {
+      withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+        sh 'sed -i "s+harbor.abcdavid.top/e_catalogue/orderms.*+harbor.abcdavid.top/e_catalogue/orderms:${IMAGE_VERSION}+g" OrderMS.yaml'
+      }
+    }
+  }
   stage("Update FileServer.yaml") {
     script {
       withCredentials([usernamePassword(credentialsId: 'Abcdavid-Github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
