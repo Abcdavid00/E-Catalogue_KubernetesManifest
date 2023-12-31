@@ -28,7 +28,7 @@ spec:
         app: fileserver
     spec:
       containers:
-      - image: harbor.abcdavid.top/e_catalogue/fileserver:0.0.111
+      - image: harbor.abcdavid.top/e_catalogue/fileserver:0.0.112
         name: fileserver
         env:
         - name: PORT
