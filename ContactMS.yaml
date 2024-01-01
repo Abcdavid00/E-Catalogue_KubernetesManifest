@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: contact-ms
-        image: harbor.abcdavid.top/e_catalogue/contactms:0.0.118
+        image: harbor.abcdavid.top/e_catalogue/contactms:0.0.119
         env:
         - name: PORT
           valueFrom:
